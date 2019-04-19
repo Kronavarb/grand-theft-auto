@@ -1,0 +1,58 @@
+0000XXXC 44443333 2222111 NNNNVVVV
+
+V N:
+	1	0x34	D3DVSDT_PBYTE3
+	2	0x35	D3DVSDT_SHORT3
+	3	0x31	D3DVSDT_NORMSHORT3
+	4	0x16	D3DVSDT_NORMPACKED3		default normal
+	5	0x32	D3DVSDT_FLOAT3			default position
+
+C:
+		0x40	D3DVSDT_D3DCOLOR
+T1-4:
+	1	0x24	D3DVSDT_PBYTE2
+	2	0x25	D3DVSDT_SHORT2
+	3	0x21	D3DVSDT_NORMSHORT2
+	4	0x16	D3DVSDT_NORMPACKED3
+	5	0x22	D3DVSDT_FLOAT2			default
+
+X:	tangent? XXX is index of tex coord set - 1 that has the data
+	anything	0x16	D3DVSDT_NORMPACKED3
+				0x16	D3DVSDT_NORMPACKED3
+
+default:
+	0	position
+	2	normal
+	3	color
+	9-C	tex coords
+
+skin:
+	stream 0
+	0	position
+	3	normal
+	4	color
+	5-8	tex coords
+	stream 1
+	1	weights		D3DVSDT_PBYTEn
+	2	indices		D3DVSDT_SHORTn
+
+normmap:
+	40320000	; vertex
+	40160001	; normal
+	40220002	; tex coords
+	40160003	; ?
+	40160004	; ?
+
+	40320000	; vertex
+	40160001	; normal
+	40400002	; color
+	40220003	; tex coords
+	40160004	; ?
+	40160005	; ?
+
+20000000h
+40320000h ; vertex		5
+40160001h ; normal		4
+40220002h ; tex coord
+40400004h ; color		5
+0FFFFFFFFh

@@ -1,0 +1,19 @@
+RpHAnimAnimation	.anm
+
+HAnimAnimation chunk header (0x1B)
+	RwInt32                     0x100
+	RwInt32                     interpolation type id (1 = RpHAnimStd)
+	RwInt32                     numFrames
+	RwInt32                     flags
+	RwReal                      duration
+	numFrames*sizeof(keyFrame)  key frames
+
+serialized format of RpHAnimStdKeyFrame:
+	RwReal      time
+	RtQuat      q     // quaternion describing rotation
+	RwV3d       t     // position
+	RwInt32     prev  // should be offset of previous key frame from beginning of frame data but appears to be junk
+
+PS2 .ska (skeletal animation) are almost the same format.
+They have no chunk header nor the first two ints (so a file starts at numFrames directly).
+In key frames the time comes after t, not before q.

@@ -1,0 +1,8 @@
+1		default
+2		refl && !spec && lit
+3		env && !lit
+		env && !spec && lit
+4		spec && lit
+
+5		refl && spec && lit
+6		env && spec && lit

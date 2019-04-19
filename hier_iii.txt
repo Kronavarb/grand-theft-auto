@@ -1,0 +1,337 @@
+/*
+1.0 addresses
+
+CPlaceable (vtbl 0x5F6A28)                   4C
+  CCamera (vtbl 0x5F0EB8)
+  CEntity (vtbl 0x5F11A8)                    PC 64, mobile 68
+    CBuilding (vtbl 0x5EBF44)                PC 64, mobile 68
+      CTreadable (vtbl 0x5EBFB4)             PC 94, mobile 98
+    CSolid (missing on PC)
+    CDummy (vtbl 0x5F0F40)                   68
+      CDummyObject (vtbl 0x5F7CEC)           68
+      CDummyPed (missing on PC)              68
+    CPhysical (vtbl 0x5F69D0)                128
+      CObject (vtbl 0x5F7DD4)                PC 198, mobile 19C
+        CCutsceneObject (vtbl 0x5F7C80)      PC 198, Xbox 19C, mobile 1A0
+          CCutsceneHead (vtbl 0x5F7C08)      PC 19C, Xbox 1B0, mobile 1B4
+          CCutsceneHand                      Xbox only!!
+        CProjectile (vtbl 0x5F8048)          198
+      CPed (vtbl 0x5F8C2C)                   PC 540, Xbox 544
+        CCivilianPed (vtbl 0x5F819C)         53C
+        CCopPed (vtbl 0x5F82A4)              558
+        CEmergencyPed (vtbl 0x5F8374)        554
+        CPlayerPed (vtbl 0x5FA500)           5F0
+      CVehicle (vtbl 0x6028A8)
+        CAutomobile (vtbl 0x600C1C)          5A8
+        CBoat (vtbl 0x600EA4)                484
+        CHeli (vtbl 0x601EB0)                33C
+        CPlane (vtbl 0x6021DC)               29C
+        CTrain (vtbl 0x60241C)               2E4
+  CInstance (vtbl 0x5FE068)                  50
+  CParticleObject (vtbl 0x5F8030)            88
+*/
+
+typedef void unknown;
+
+class CPlaceable
+{
+	virtual ~CPlaceable();
+};
+
+class CCamera : CPlaceable
+{
+	~CCamera();
+};
+
+class CEntity : CPlaceable
+{
+	~CEntity();
+
+	virtual unknown Add(void);
+	virtual unknown Remove(void);
+	virtual unknown SetModelIndex(uint);
+	virtual unknown SetModelIndexNoCreate(uint);
+	virtual unknown CreateRwObject(void);
+	virtual unknown DeleteRwObject(void);
+	virtual unknown GetBoundRect(void);
+	virtual unknown ProcessControl(void);
+	virtual unknown ProcessCollision(void);
+	virtual unknown ProcessShift(void);
+	virtual unknown Teleport(CVector);
+	virtual unknown PreRender(void);
+	virtual unknown Render(void);
+	virtual unknown SetupLighting(void);
+	virtual unknown RemoveLighting(bool);
+	virtual unknown FlagToDestroyWhenNextProcessed(void);
+};
+
+class CBuilding : CEntity
+{
+	~CBuilding();
+
+	virtual unknown GetIsATreadable(void);
+}
+
+class CTreadable : CBuilding
+{
+	~CTreadable();
+
+	// CBuilding
+	unknown GetIsATreadable(void);
+}
+
+class CDummy : CEntity
+{
+	~CDummy();
+
+	// CEntity
+	unknown Add(void);
+	unknown Remove(void);
+}
+
+class CDummyObject : CDummy
+{
+	~CDummyObject();
+
+	// CEntity
+	unknown Add(void);
+	unknown Remove(void);
+}
+
+class CPhysical : CEntity
+{
+	~CPhysical();
+
+	// CEntity
+	unknown Add(void);
+	unknown Remove(void);
+	unknown GetBoundRect(void);
+	unknown ProcessControl(void);
+	unknown ProcessCollision(void);
+	unknown ProcessShift(void);
+	unknown FlagToDestroyWhenNextProcessed(void);
+
+	virtual unknown ProcessEntityCollision(CEntity *,CColPoint *);
+}
+
+class CObject : CPhysical
+{
+	~CObject();
+
+	// CEntity
+	unknown ProcessControl(void);
+	unknown Teleport(CVector);
+	unknown Render(void);
+	unknown SetupLighting(void);
+	unknown RemoveLighting(bool);
+}
+
+class CCutsceneObject : CObject
+{
+	~CCutsceneObject();
+
+	// CEntity
+	unknown SetModelIndex(uint);
+	unknown ProcessControl(void);
+	unknown PreRender(void);
+	unknown Render(void);
+	unknown SetupLighting(void);
+	unknown RemoveLighting(bool);
+}
+
+class CCutsceneHead : CCutsceneObject
+{
+	~CCutsceneHead();
+
+	// CEntity
+	unknown CreateRwObject(void);
+	unknown DeleteRwObject(void);
+	unknown ProcessControl(void);
+	unknown Render(void);
+}
+
+class CProjectile : CObject
+{
+	~CProjectile();
+}
+
+class CPed : CPhysical
+{
+	~CPed();
+
+	// CEntity
+	unknown SetModelIndex(uint);
+	unknown ProcessControl(void);
+	unknown Teleport(CVector);
+	unknown PreRender(void);
+	unknown Render(void);
+	unknown SetupLighting(void);
+	unknown RemoveLighting(bool);
+	unknown FlagToDestroyWhenNextProcessed(void);
+
+	// CPhysical
+	unknown ProcessEntityCollision(CEntity *,CColPoint *);
+
+	virtual unknown SetMoveAnim(void);
+}
+
+class CCivilianPed : CPed
+{
+	~CCivilianPed();
+
+	// CEntity
+	unknown ProcessControl(void);
+}
+
+class CCopPed : CPed
+{
+	~CCopPed();
+
+	// CEntity
+	unknown ProcessControl(void);
+}
+
+class CEmergencyPed : CPed
+{
+	~CEmergencyPed();
+
+	// CEntity
+	unknown ProcessControl(void);
+}
+
+class CPlayerPed : CPed
+{
+	~CPlayerPed();
+
+	// CEntity
+	unknown ProcessControl(void);
+
+	// CPed
+	unknown SetMoveAnim(void);
+}
+
+class CVehicle : CPhysical
+{
+	~CVehicle();
+
+	// CEntity
+	unknown SetModelIndex(uint);
+	unknown SetupLighting(void);
+	unknown RemoveLighting(bool);
+	unknown FlagToDestroyWhenNextProcessed(void);
+
+	virtual unknown ProcessControlInputs(uchar);
+	virtual unknown GetComponentWorldPosition(int,CVector &);
+	virtual unknown IsComponentPresent(int);
+	virtual unknown SetComponentRotation(int,CVector);
+	virtual unknown OpenDoor(int,eDoors,float);
+	virtual unknown ProcessOpenDoor(uint,uint,float);
+	virtual unknown IsDoorReady(eDoors);
+	virtual unknown IsDoorFullyOpen(eDoors);
+	virtual unknown IsDoorClosed(eDoors);
+	virtual unknown IsDoorMissing(eDoors);
+	virtual unknown RemoveRefsToVehicle(CEntity *);
+	virtual unknown BlowUpCar(CEntity *);
+	virtual unknown SetUpWheelColModel(CColModel *);
+	virtual unknown BurstTyre(uchar);
+	virtual unknown IsRoomForPedToLeaveCar(uint,CVector *);
+	virtual unknown GetHeightAboveRoad(void);
+	virtual unknown PlayCarHorn(void);
+}
+
+class CAutomobile : CVehicle
+{
+	~CAutomobile();
+
+	// CEntity
+	unknown SetModelIndex(uint);
+	unknown ProcessControl(void);
+	unknown Teleport(CVector);
+	unknown PreRender(void);
+	unknown Render(void);
+
+	// CPhysical
+	unknown ProcessEntityCollision(CEntity *,CColPoint *);
+
+	// CAutomobile
+	unknown ProcessControlInputs(uchar);
+	unknown GetComponentWorldPosition(int,CVector &);
+	unknown IsComponentPresent(int);
+	unknown SetComponentRotation(int,CVector);
+	unknown OpenDoor(int,eDoors,float);
+	unknown ProcessOpenDoor(uint,uint,float);
+	unknown IsDoorReady(eDoors);
+	unknown IsDoorFullyOpen(eDoors);
+	unknown IsDoorClosed(eDoors);
+	unknown IsDoorMissing(eDoors);
+	unknown RemoveRefsToVehicle(CEntity *);
+	unknown BlowUpCar(CEntity *);
+	unknown SetUpWheelColModel(CColModel *);
+	unknown BurstTyre(uchar);
+	unknown IsRoomForPedToLeaveCar(uint,CVector *);
+	unknown GetHeightAboveRoad(void);
+	unknown PlayCarHorn(void);
+}
+
+class CBoat : CVehicle
+{
+	~CBoat();
+
+	// CEntity
+	unknown SetModelIndex(uint);
+	unknown ProcessControl(void);
+	unknown Teleport(CVector);
+	unknown PreRender(void);
+	unknown Render(void);
+
+	// CVehicle
+	unknown ProcessControlInputs(uchar);
+	unknown GetComponentWorldPosition(int,CVector &);
+	unknown IsComponentPresent(int);
+	unknown BlowUpCar(CEntity *);
+}
+
+class CHeli : CVehicle
+{
+	~CHeli();
+
+	// CEntity
+	unknown SetModelIndex(uint);
+	unknown ProcessControl(void);
+	unknown PreRender(void);
+	unknown Render(void);
+}
+
+class CPlane : CVehicle
+{
+	~CPlane();
+
+	// CEntity
+	unknown SetModelIndex(uint);
+	unknown DeleteRwObject(void);
+	unknown ProcessControl(void);
+	unknown PreRender(void);
+	unknown Render(void);
+	unknown FlagToDestroyWhenNextProcessed(void);
+}
+
+class CTrain : CVehicle
+{
+	~CTrain();
+
+	// CEntity
+	unknown SetModelIndex(uint);
+	unknown ProcessControl(void);
+	unknown PreRender(void);
+	unknown Render(void);
+}
+
+class CInstance : CPlaceable
+{
+	~CInstance();
+};
+
+class CParticleObject : CPlaceable
+{
+	~CParticleObject();
+};

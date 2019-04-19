@@ -1,0 +1,36 @@
+0x53F2009A		CCustomCarEnvMapPipeline
+
+PC & Mobile:
+0x53F20098		CCustomBuildingDNPipeline
+0x53F2009C		CCustomBuildingPipeline
+
+Xbox
+0x53F2009E		building  !N !EN
+0x53F20096		building   N !EN
+0x53F200A0		building  !N  EN   (also env) non-DN	unused in dffs
+0x53F200A2		building   N  EN   (also env) DN
+	extra normals freed when instanced (?)
+
+9E:
+40320000h
+40400001h
+40220002h
+
+96:
+40320000h
+40160001h
+40400002h
+40220003h
+
+A0:
+40320000h
+40400001h
+40220002h
+40320003h	extra normals
+
+A2:
+40320000h	pos
+40160001h	normals
+40400002h	colors
+40220003h	texture
+40320004h	extra normals

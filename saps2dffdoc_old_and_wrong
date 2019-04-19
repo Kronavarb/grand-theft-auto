@@ -1,0 +1,43 @@
+04 00 00 00
+
+foreach split {
+	Split size (data)
+	00 00 00 00
+
+	data {
+	foreach block {
+		for all data types {
+			XX 00 00 30
+			Location of data relative to beginning of block
+			  (in 16 byte chunks)
+			0X 01 00 01
+			Section identifier
+			00 00 00 10
+			00 00 00 00
+			00 00 00 00
+			00 00 00 00
+		}
+
+		if last block
+			01 00 00 60
+		else
+			01 00 00 10
+		00 00 00 00
+		00 00 00 00
+		00 00 00 00
+		XX 00 00 04
+
+		if first block
+			00 00 00 15
+		else
+			00 00 00 17
+
+		if last block
+			00 00 00 11
+			00 00 00 11
+		else
+			00 00 00 00
+			00 00 00 00
+	}
+	}
+}

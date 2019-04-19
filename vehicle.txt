@@ -1,0 +1,210 @@
+0x0	clump
+0x4	numextras
+0x8	*extras //[numextras]
+0xc	materials (25)
+0x70	materials (25)
+0xd4
+
+flags:
+	0x0001: don't set hierId
+	0x0002: dam/ok
+	0x0004: wheel
+	0x0008: position (lights, seats)
+	0x0010: door
+	0x0020: flag 0x4
+	0x0040: flag 0x8
+	0x0080: flag 0x10
+	0x0100: flag 0x20
+	0x0200: extra
+	0x0400: flag 0x40
+	0x0800: flag 0x80
+	0x1000: flag 0x100
+	0x2000: flag 0x200
+	0x4000: flag 0x400
+
+atomic flags:
+	0x01: ok
+	0x02: dam
+
+VC
+==
+
+.data:006996E0 carIds          VehicleDesc <offset aWheel_rf_dummy, 1, 44h>
+.data:006996E0                 VehicleDesc <offset aWheel_rm_dummy, 2, 44h> ; "wheel_rf_dummy"
+.data:006996E0                 VehicleDesc <offset aWheel_rb_dummy, 3, 44h>
+.data:006996E0                 VehicleDesc <offset aWheel_lf_dummy, 4, 24h>
+.data:006996E0                 VehicleDesc <offset aWheel_lm_dummy, 5, 24h>
+.data:006996E0                 VehicleDesc <offset aWheel_lb_dummy, 6, 24h>
+.data:006996E0                 VehicleDesc <offset aBump_front_dum, 7, 82h>
+.data:006996E0                 VehicleDesc <offset aBonnet_dummy, 11h, 2>
+.data:006996E0                 VehicleDesc <offset aWing_rf_dummy, 9, 2>
+.data:006996E0                 VehicleDesc <offset aWing_rr_dummy, 0Ah, 42h>
+.data:006996E0                 VehicleDesc <offset aDoor_rf_dummy, 0Bh, 5052h>
+.data:006996E0                 VehicleDesc <offset aDoor_rr_dummy, 0Ch, 3152h>
+.data:006996E0                 VehicleDesc <offset aWing_lf_dummy, 0Dh, 2>
+.data:006996E0                 VehicleDesc <offset aWing_lr_dummy, 0Eh, 22h>
+.data:006996E0                 VehicleDesc <offset aDoor_lf_dummy, 0Fh, 5032h>
+.data:006996E0                 VehicleDesc <offset aDoor_lr_dummy, 10h, 3132h>
+.data:006996E0                 VehicleDesc <offset aBoot_dummy, 12h, 102h>
+.data:006996E0                 VehicleDesc <offset aBump_rear_dumm, 8, 102h>
+.data:006996E0                 VehicleDesc <offset aWindscreen_dum, 13h, 0C82h>
+.data:006996E0                 VehicleDesc <offset aPed_frontseat, 2, 9>
+.data:006996E0                 VehicleDesc <offset aPed_backseat, 3, 9>
+.data:006996E0                 VehicleDesc <offset aHeadlights, 0, 9>
+.data:006996E0                 VehicleDesc <offset aTaillights, 1, 9>
+.data:006996E0                 VehicleDesc <offset aExhaust, 4, 9>
+.data:006996E0                 VehicleDesc <offset aExtra1, 0, 601h>
+.data:006996E0                 VehicleDesc <offset aExtra2, 0, 601h>
+.data:006996E0                 VehicleDesc <offset aExtra3, 0, 601h>
+.data:006996E0                 VehicleDesc <offset aExtra4, 0, 601h>
+.data:006996E0                 VehicleDesc <offset aExtra5, 0, 601h>
+.data:006996E0                 VehicleDesc <offset aExtra6, 0, 601h>
+
+.data:006998D0 boatIds         VehicleDesc <offset aBoat_moving_hi, 1, 0>
+.data:006998D0                 VehicleDesc <offset aBoat_rudder_hi, 3, 0> ; "ped_frontseat"
+.data:006998D0                 VehicleDesc <offset aBoat_flap_left, 4, 0>
+.data:006998D0                 VehicleDesc <offset aBoat_flap_right, 5, 0>
+.data:006998D0                 VehicleDesc <offset aBoat_rearflap_left, 6, 0>
+.data:006998D0                 VehicleDesc <offset aBoat_rearflap_right, 7, 0>
+.data:006998D0                 VehicleDesc <offset aWindscreen_hi_ok, 2, 0C00h>
+.data:006998D0                 VehicleDesc <offset aPed_frontseat, 0, 9>
+
+.data:006999A4 trainIds        VehicleDesc <offset aDoor_lhs_dummy, 1, 22h>
+.data:006999A4                 VehicleDesc <offset aDoor_rhs_dummy, 2, 22h> ; "door_lhs_dummy"
+.data:006999A4                 VehicleDesc <offset aLight_front, 0, 9>
+.data:006999A4                 VehicleDesc <offset aLight_rear, 1, 9>
+.data:006999A4                 VehicleDesc <offset aPed_left_entry, 2, 19h>
+.data:006999A4                 VehicleDesc <offset aPed_mid_entry, 3, 19h>
+.data:006999A4                 VehicleDesc <offset aPed_right_entry, 4, 19h>
+
+.data:00699A54 heliIds         VehicleDesc <offset aChassis_dummy, 1, 2>
+.data:00699A54                 VehicleDesc <offset aToprotor, 2, 0> ; "chassis_dummy"
+.data:00699A54                 VehicleDesc <offset aBackrotor, 3, 0>
+.data:00699A54                 VehicleDesc <offset aTail, 4, 0>
+.data:00699A54                 VehicleDesc <offset aTopknot, 5, 0>
+.data:00699A54                 VehicleDesc <offset aSkid_left, 6, 0>
+.data:00699A54                 VehicleDesc <offset aSkid_right, 7, 0>
+
+.data:00699B04 planeIds        VehicleDesc <offset aWheel_front_du, 2, 0>
+.data:00699B04                 VehicleDesc <offset aWheel_rear_dummy, 3, 0> ; "wheel_front_dummy"
+.data:00699B04                 VehicleDesc <offset aLight_tailplane, 2, 9>
+.data:00699B04                 VehicleDesc <offset aLight_left, 0, 9>
+.data:00699B04                 VehicleDesc <offset aLight_right, 1, 9>
+
+.data:00699B94 bikeIds         VehicleDesc <offset aChassis_dummy, 1, 0>
+.data:00699B94                 VehicleDesc <offset aForks_front, 2, 0> ; "ped_frontseat"
+.data:00699B94                 VehicleDesc <offset aForks_rear, 3, 0>
+.data:00699B94                 VehicleDesc <offset aWheel_front, 4, 0>
+.data:00699B94                 VehicleDesc <offset aWheel_rear, 5, 0>
+.data:00699B94                 VehicleDesc <offset aMudguard, 6, 0>
+.data:00699B94                 VehicleDesc <offset aHandlebars, 7, 0>
+.data:00699B94                 VehicleDesc <offset aPed_frontseat, 2, 9>
+.data:00699B94                 VehicleDesc <offset aPed_backseat, 3, 9>
+.data:00699B94                 VehicleDesc <offset aHeadlights, 0, 9>
+.data:00699B94                 VehicleDesc <offset aTaillights, 1, 9>
+.data:00699B94                 VehicleDesc <offset aExhaust, 4, 9>
+.data:00699B94                 VehicleDesc <offset aExtra1, 0, 601h>
+.data:00699B94                 VehicleDesc <offset aExtra2, 0, 601h>
+.data:00699B94                 VehicleDesc <offset aExtra3, 0, 601h>
+.data:00699B94                 VehicleDesc <offset aExtra4, 0, 601h>
+.data:00699B94                 VehicleDesc <offset aExtra5, 0, 601h>
+.data:00699B94                 VehicleDesc <offset aExtra6, 0, 601h>
+
+
+
+LCS
+===
+
+.data:0076685C carIds          VehicleDesc <aWheel_rf_dummy, 1, 0x44>
+.data:0076685C                 VehicleDesc <aWheel_rm_dummy, 2, 0x44> ; "ped_frontseat"
+.data:0076685C                 VehicleDesc <aWheel_rb_dummy, 3, 0x44>
+.data:0076685C                 VehicleDesc <aWheel_lf_dummy, 4, 0x24>
+.data:0076685C                 VehicleDesc <aWheel_lm_dummy, 5, 0x24>
+.data:0076685C                 VehicleDesc <aWheel_lb_dummy, 6, 0x24>
+.data:0076685C                 VehicleDesc <aBump_front_dum, 7, 0x82>
+.data:0076685C                 VehicleDesc <aBonnet_dummy, 0x11, 2>
+.data:0076685C                 VehicleDesc <aWing_rf_dummy, 9, 2>
+.data:0076685C                 VehicleDesc <aWing_rr_dummy, 0xA, 0x42>
+.data:0076685C                 VehicleDesc <aDoor_rf_dummy, 0xB, 0x5052>
+.data:0076685C                 VehicleDesc <aDoor_rr_dummy, 0xC, 0x3152>
+.data:0076685C                 VehicleDesc <aWing_lf_dummy, 0xD, 2>
+.data:0076685C                 VehicleDesc <aWing_lr_dummy, 0xE, 0x22>
+.data:0076685C                 VehicleDesc <aDoor_lf_dummy, 0xF, 0x5032>
+.data:0076685C                 VehicleDesc <aDoor_lr_dummy, 0x10, 0x3132>
+.data:0076685C                 VehicleDesc <aBoot_dummy, 0x12, 0x102>
+.data:0076685C                 VehicleDesc <aBump_rear_dumm, 8, 0x102>
+.data:0076685C                 VehicleDesc <aWindscreen_dum, 0x13, 0xC82>
+.data:0076685C                 VehicleDesc <aPed_frontseat, 2, 9>
+.data:0076685C                 VehicleDesc <aPed_backseat, 3, 9>
+.data:0076685C                 VehicleDesc <aHeadlights, 0, 9>
+.data:0076685C                 VehicleDesc <aTaillights, 1, 9>
+.data:0076685C                 VehicleDesc <aExhaust, 4, 9>
+.data:0076685C                 VehicleDesc <aExtra1, 0, 0x601>
+.data:0076685C                 VehicleDesc <aExtra2, 0, 0x601>
+.data:0076685C                 VehicleDesc <aExtra3, 0, 0x601>
+.data:0076685C                 VehicleDesc <aExtra4, 0, 0x601>
+.data:0076685C                 VehicleDesc <aExtra5, 0, 0x601>
+.data:0076685C                 VehicleDesc <aExtra6, 0, 0x601>
+
+.data:007667F0 boatIds         VehicleDesc <aBoat_moving_hi, 1, 0>
+.data:007667F0                 VehicleDesc <aBoat_rudder_hi, 3, 0> ; "windscreen"
+.data:007667F0                 VehicleDesc <aBoat_flap_left, 4, 0>
+.data:007667F0                 VehicleDesc <aBoat_flap_righ, 5, 0>
+.data:007667F0                 VehicleDesc <aBoat_rearflap_, 6, 0>
+.data:007667F0                 VehicleDesc <aBoat_rearfla_0, 7, 0>
+.data:007667F0                 VehicleDesc <aWindscreen, 2, 0x800>
+.data:007667F0                 VehicleDesc <aPed_frontseat, 0, 9>
+
+.data:00766790 trainIds        VehicleDesc <aDoor_lhs_dummy, 1, 0x22>
+.data:00766790                 VehicleDesc <aDoor_rhs_dummy, 2, 0x22> ; "light_front"
+.data:00766790                 VehicleDesc <aLight_front, 0, 9>
+.data:00766790                 VehicleDesc <aLight_rear, 1, 9>
+.data:00766790                 VehicleDesc <aPed_left_entry, 2, 0x19>
+.data:00766790                 VehicleDesc <aPed_mid_entry, 3, 0x19>
+.data:00766790                 VehicleDesc <aPed_right_entr, 4, 0x19>
+
+.data:00766694 heliIds         VehicleDesc <aChassis_dummy, 1, 2>
+.data:00766694                 VehicleDesc <aToprotor, 2, 0> ; "toprotor"
+.data:00766694                 VehicleDesc <aBackrotor, 3, 0>
+.data:00766694                 VehicleDesc <aTail, 4, 0>
+.data:00766694                 VehicleDesc <aTopknot, 5, 0>
+.data:00766694                 VehicleDesc <aSkid_left, 6, 0>
+.data:00766694                 VehicleDesc <aSkid_right, 7, 0>
+
+.data:0076664C planeIds        VehicleDesc <aWheel_front_du, 2, 0>
+.data:0076664C                 VehicleDesc <aWheel_rear_dum, 3, 0> ; "wheel_front_dummy"
+.data:0076664C                 VehicleDesc <aLight_tailplan, 2, 9>
+.data:0076664C                 VehicleDesc <aLight_left, 0, 9>
+.data:0076664C                 VehicleDesc <aLight_right, 1, 9>
+
+.data:00766568 bikeIds         VehicleDesc <aChassis_dummy, 1, 0>
+.data:00766568                 VehicleDesc <aForks_front, 2, 0> ; "chassis_dummy"
+.data:00766568                 VehicleDesc <aForks_rear, 3, 0>
+.data:00766568                 VehicleDesc <aWheel_front, 4, 0>
+.data:00766568                 VehicleDesc <aWheel_rear, 5, 0>
+.data:00766568                 VehicleDesc <aMudguard, 6, 0>
+.data:00766568                 VehicleDesc <aHandlebars, 7, 0>
+.data:00766568                 VehicleDesc <aPed_frontseat, 2, 9>
+.data:00766568                 VehicleDesc <aPed_backseat, 3, 9>
+.data:00766568                 VehicleDesc <aHeadlights, 0, 9>
+.data:00766568                 VehicleDesc <aTaillights, 1, 9>
+.data:00766568                 VehicleDesc <aExhaust, 4, 9>
+.data:00766568                 VehicleDesc <aExtra1, 0, 0x601>
+.data:00766568                 VehicleDesc <aExtra2, 0, 0x601>
+.data:00766568                 VehicleDesc <aExtra3, 0, 0x601>
+.data:00766568                 VehicleDesc <aExtra4, 0, 0x601>
+.data:00766568                 VehicleDesc <aExtra5, 0, 0x601>
+.data:00766568                 VehicleDesc <aExtra6, 0, 0x601>
+
+.data:007666F4 ferryIds        VehicleDesc <aDoor_front_dum, 1, 0x22>
+.data:007666F4                 VehicleDesc <aDoor_back_dumm, 3, 0x22> ; "door_front_dummy"
+.data:007666F4                 VehicleDesc <aRamp_front_dum, 2, 0x22>
+.data:007666F4                 VehicleDesc <aRamp_back_dumm, 4, 0x22>
+.data:007666F4                 VehicleDesc <aLight_front, 0, 9>
+.data:007666F4                 VehicleDesc <aLight_rear, 1, 9>
+.data:007666F4                 VehicleDesc <aChim_left, 2, 9>
+.data:007666F4                 VehicleDesc <aPed_point, 3, 0x19>
+.data:007666F4                 VehicleDesc <aCar1_dummy, 4, 0x19>
+.data:007666F4                 VehicleDesc <aCar2_dummy, 5, 0x19>
+.data:007666F4                 VehicleDesc <aCar3_dummy, 6, 0x19>
+.data:007666F4                 VehicleDesc <aCar4_dummy, 7, 0x19>

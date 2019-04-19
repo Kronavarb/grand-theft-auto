@@ -1,0 +1,57 @@
+clmp {
+  strt {
+    int numAtomics
+  }
+  frml {
+    strt {
+      int numFrames
+    }
+    #foreach frame {
+      strt {
+        V3d right
+	int pad
+        V3d up
+	int pad
+        V3d at
+	ind pad
+        V3d pos
+	int pad
+        int parent
+	int unknown // flags?
+      }
+    }
+  }
+  #foreach atomic {
+    strt {
+      int frmIdx
+      int flags
+      int subType
+    }
+    geom {
+      int
+      int
+      int
+      int
+      int
+      int
+      float
+      float
+      float
+      mlst {
+        int numMaterials
+        #foreach material {
+          matl {
+            strt {
+              16 bytes
+              texr {
+                stng
+                stng
+              }
+            }
+          }
+        }
+      }
+      vertex data....
+    }
+  }
+}

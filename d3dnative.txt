@@ -1,0 +1,26 @@
+
+D3D9
+
+uint32                           platform (9)
+uint32                           size of resEntryHeader + instanceData
+RxD3D9ResEntryHeader             header
+RxD3D9InstanceData[numMeshes]    instData	// material pointer is replaced with index
+uint32	                         numElements
+D3DVERTEXELEMENT9[numElements]   declaration
+uint16                           indices[totalNumIndex]
+#repeat numVertexStreams (2)
+  RxD3D9VertexStream             vertexStream
+  uint8[numTotalVertices*stride] vertex data
+#endrepeat
+
+
+D3D8
+
+uint32                         platform (8)
+uint32                         size of resEntryHeader + instanceData
+RxD3D8ResEntryHeader           header
+RxD3D8InstanceData[numMeshes]  instData	// material pointer is replaced with index
+#repeat numMeshes
+  uint16                       indices[numIndices]
+  uint8[numVertices*stride]    vertex data
+#endrepeat

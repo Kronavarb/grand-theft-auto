@@ -1,0 +1,99 @@
+Grand Theft Auto: Vice City PS2 "Native Data PLG" description
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Note: All bytes are stored little endian.
+
+A DFF file consists of geometries, geometries consist of splits
+and splits consist (in the PS2 version) of blocks.
+
+A block contains vertex, UV, and normal coordinates as well as
+vertex colors. Each vertex, UV, normal and vertex color section is
+preceded by a 16 byte header with the following format:
+	4b - unknown
+	4b - 00 00 00 05
+	4b - X0 01 00 01
+	4b - Identifier
+where X is either 5 or 4 depending on if the model is an actor or not.
+5 is used by actors otherwise 4 is used.
+The identifier decides if the following data are vertex, uv, or normal
+coordinates or vertex colors and can be one of these 4 dwords, where 'XX' is
+the vertex count:
+	00 80 XX 68 - Vertex coordinates
+	01 80 XX 64 - UV coordinates
+	02 C0 XX 6E - Vertex colors
+	03 80 XX 6A - Normals
+
+Note: XX is always the vertex count.
+
+
+4b - platform (since these are ps2 files, it's always 4)
+
+foreach split {
+	4b  - int - Blocksize /* Blocksize+8+offset of Blocksize = next block */
+	4b  - int - isnotactor (bool)
+
+	foreach block {
+		if actor
+			4b  - XX 00 00 30
+			4b  - Unknown
+			4b  - 05 01 00 01
+			4b  - 04 80 XX 6C
+
+			4b  - 00 00 00 10
+			4b  - 00 00 00 00
+			4b  - 00 00 00 00
+			4b  - 00 00 00 00
+
+			4b  - XX 00 00 10
+			4b  - 00 00 00 00
+			4b  - 00 00 00 00
+			4b  - 00 00 00 00
+		else
+			4b  - Unknown
+			4b  - 00 00 00 00
+			4b  - 00 00 00 11 
+			4b  - 00 00 00 06
+
+		16b - Vertex header
+		Vertex section, 16b aligned {
+			4b - float - X
+			4b - float - Y
+			4b - float - Z
+		}
+
+		16b - UV header
+		UV section, 16b aligned {
+			4b - float - U
+			4b - float - V
+		}
+
+		16b - Vertex color header
+		Vertex color section, 16b aligned {
+			1b - int - R
+			1b - int - G
+			1b - int - B
+			1b - int - A
+		}
+
+		16b - Normal header
+		Normal section, 16b aligned {
+			/* divide by 127 to obtain correct value */
+			1b - int - X
+			1b - int - Y
+			1b - int - Z
+		}
+
+		4b - XX 00 00 04
+		if first block 
+			4b - 00 00 00 15
+		else
+			4b - 00 00 00 17
+
+		if last block
+			4b - 00 00 00 11
+			4b - 00 00 00 06
+		else
+			4b - 00 00 00 00
+			4b - 00 00 00 00
+	}
+	unknown bytes
+}

@@ -1,0 +1,37 @@
+   1	road
+   4	alpha: dst*(1-srcalpha) + src*srcalpha
+   8	alpha: dst*one + src*srcalpha
+  40	no zwrite
+  80	no frustum culling
+2000	call pre-render method
+
+
+III		PS2	PC
+			0		last distance greatest
+			1		first distance greatest
+			2		second distance greatest
+	1	1	4		Normal cull
+		2	8		something with LODs/distances
+		4	10		big building
+	2	8	20		Do not fade
+	4	10	40		Draw last
+	8	20	80		Additive (implies Draw last)
+	10	40	100		Is Subway
+	20	80	200		Ignore Lighting
+	40		400		No Zbuffer write
+
+if drawdist > 300 -> big building (if no related object -> other draw dist 100)
+if drawdist > 2000 -> level = 0
+
+VC		PC
+	1	4
+	2	20
+	4	40
+	8	80
+	10	100
+	20	200
+	40	400
+	80	800
+	100	1000
+	200	2000
+	400	4000

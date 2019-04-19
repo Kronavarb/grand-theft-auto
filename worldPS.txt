@@ -1,0 +1,111 @@
+typedef struct _D3DPixelShaderDef
+{
+   DWORD    PSAlphaInputs[8];          // Alpha inputs for each stage
+	14181010
+		PS_REGISTER_V0
+		PS_INPUTMAPPING_UNSIGNED_IDENTITY
+
+		PS_REGISTER_T0
+		PS_INPUTMAPPING_UNSIGNED_IDENTITY
+
+		PS_REGISTER_ZERO
+		PS_INPUTMAPPING_UNSIGNED_IDENTITY
+
+		PS_REGISTER_ZERO
+		PS_INPUTMAPPING_UNSIGNED_IDENTITY
+	dcd11010
+		PS_REGISTER_R0
+		PS_INPUTMAPPING_SIGNED_IDENTITY
+
+		PS_REGISTER_C0
+		PS_INPUTMAPPING_SIGNED_IDENTITY
+
+		PS_REGISTER_ZERO
+		PS_INPUTMAPPING_UNSIGNED_IDENTITY
+
+		PS_REGISTER_ZERO
+		PS_INPUTMAPPING_UNSIGNED_IDENTITY
+   DWORD    PSFinalCombinerInputsABCD; // Final combiner inputs
+	130c0300
+		PS_REGISTER_FOG
+		PS_CHANNEL_ALPHA
+
+		PS_REGISTER_R0
+
+		PS_REGISTER_FOG
+   DWORD    PSFinalCombinerInputsEFG;  // Final combiner inputs (continued)
+	00001c80
+		PS_REGISTER_R0
+		PS_CHANNEL_ALPHA
+
+		PS_FINALCOMBINERSETTING_CLAMP_SUM
+   DWORD    PSConstant0[8];            // C0 for each stage
+	ffffffff
+	ffffffff
+   DWORD    PSConstant1[8];            // C1 for each stage
+   DWORD    PSAlphaOutputs[8];         // Alpha output for each stage
+	000000c0
+		PS_REGISTER_DISCARD
+
+		PS_REGISTER_R0
+	000000c0
+		PS_REGISTER_DISCARD
+
+		PS_REGISTER_R0
+   DWORD    PSRGBInputs[8];            // RGB inputs for each stage
+	0804c149
+		PS_REGISTER_T0
+		PS_INPUTMAPPING_UNSIGNED_IDENTITY
+
+		PS_REGISTER_V0
+		PS_INPUTMAPPING_UNSIGNED_IDENTITY
+
+		PS_REGISTER_C0
+		PS_INPUTMAPPING_SIGNED_IDENTITY
+
+		PS_REGISTER_T1
+		PS_INPUTMAPPING_EXPAND_NORMAL
+	cdcc20cc
+		PS_REGISTER_R1
+		PS_INPUTMAPPING_SIGNED_IDENTITY
+
+		PS_REGISTER_R0
+		PS_INPUTMAPPING_SIGNED_IDENTITY
+
+		PS_REGISTER_ZERO
+		PS_INPUTMAPPING_UNSIGNED_INVERT
+
+		PS_REGISTER_R0
+		PS_INPUTMAPPING_SIGNED_IDENTITY
+   DWORD    PSCompareMode;             // Compare modes for clipplane texture mode
+   DWORD    PSFinalCombinerConstant0;  // C0 in final combiner
+   DWORD    PSFinalCombinerConstant1;  // C1 in final combiner
+   DWORD    PSRGBOutputs[8];           // Stage 0 RGB outputs
+	000000cd
+		PS_REGISTER_R1
+		PS_COMBINEROUTPUT_CD_MULTIPLY
+
+		PS_REGISTER_R0
+		PS_COMBINEROUTPUT_AB_MULTIPLY
+	00000c00
+		PS_REGISTER_R0
+		PS_COMBINEROUTPUT_AB_CD_SUM
+   DWORD    PSCombinerCount;           // Active combiner count (Stages 0-7)
+	00011102
+		2
+		PS_COMBINERCOUNT_MUX_MSB
+		PS_COMBINERCOUNT_UNIQUE_C0
+		PS_COMBINERCOUNT_UNIQUE_C1
+   DWORD    PSTextureModes;            // Texture addressing modes
+	00000021
+		PS_TEXTUREMODES_PROJECT2D
+		PS_TEXTUREMODES_PROJECT2D
+   DWORD    PSDotMapping;              // Input mapping for dot product modes
+   DWORD    PSInputTexture;            // Texture source for some texture modes
+   DWORD    PSC0Mapping;               // Mapping of c0 regs to D3D constants
+	ffffff00
+   DWORD    PSC1Mapping;               // Mapping of c1 regs to D3D constants
+	ffffffff
+   DWORD    PSFinalCombinerConstants;  // Final combiner constant mapping
+	000001ff
+} D3DPIXELSHADERDEF;

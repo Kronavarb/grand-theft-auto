@@ -1,0 +1,14 @@
+PS2    III: 0x31000
+PC     III: 0x33002
+Xbox   III: 0x35000
+Mobile III: 0x34005
+
+PS2    VC: 0x33002
+PC     VC: 0x34003
+Xbox   VC: 0x35000
+Mobile VC: 0x34005
+
+PS2    SA: 0x36003
+PC     SA: 0x36003
+Xbox   SA: 0x36003
+Mobile SA: 0x36003
